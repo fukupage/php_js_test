@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>FORM to JSON</title>
+    <script src="./jquery.js"></script>
+    <script src="./jquery.jsForm.js"></script>
+    <script src="./test2.js"></script>
+    <link rel='stylesheet' href="./style/sample.css"></script>
+  </head>
+
+  <body>
+    <h1>JSON送信</h1>
+    <form
+      action="https://api.example.com/v1/objects"
+      method="post"
+      id="first_test" name="test"
+    >
+      <label for="data.foo.first"   >foo.first:    </label><input type="text"   name="data.foo.first">   <br>
+      <label for="data.foo.second.a">foo.second.a: </label><input type="text"   name="data.foo.second.a"><br>
+      <label for="data.foo.second.b">foo.second.b: </label><input type="text"   name="data.foo.second.b"><br>
+      <label for="data.foo.third"   >foo.third:    </label><input type="text"   name="data.foo.third">   <br>
+      <fieldset class='array'>
+        <legend>配列</legend>
+        <div class="collection" data-field="data.hoge">
+          <div class="item">
+            <label for="hoge.first"   >hoge.first:   </label><input type="text"   name="hoge.first">       <br>
+            <label for="hoge.second"  >hoge.second:  </label><input type="text"   name="hoge.second">      <br>
+          </div>
+        </div>
+      </fieldset>
+      <label for="data.bar.first"   >bar.first:    </label><input type="text"   name="data.bar.first">   <br>
+      <label for="data.bar.second"  >bar.second:   </label><input type="text"   name="data.bar.second">  <br>
+      <input type="submit" name="submit" value="送信">
+    </form>
+
+    <h2>結果表示</h2>
+      <pre id="display">
+NO CONTENTS
+      </pre>
+  </body>
+</html>

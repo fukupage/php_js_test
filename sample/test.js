@@ -1,18 +1,21 @@
-window.onload = function(){
+
+(function(){
+	'use strict'
+	const btn = document.getElementById("btn");
+	const list = document.getElementById("list");
+	const input = document.forms.form1.test;
+	const url_w = "./test.php?mode=write";
+	const url_r = "./test.php?mode=read";
+	const xhr = new XMLHttpRequest();
 
 	// data-write
-	var btn = document.getElementById("btn");
 	btn.onclick = function(){
-		var input = document.forms.form1.test;
-		var requests = "message="+input.value;
-		var url = "./test.php?mode=write";
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', url, true);
+		const requests = "message="+input.value;
+		xhr.open('POST', url_w, true);
 		xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 		xhr.send(requests);
 		xhr.onreadystatechange = function(){
 			if(this.readyState === 4){
-				var list = document.getElementById("list");
 				list.innerHTML += "<div>"+this.responseText+"</div>";
 				document.forms.form1.test.value = "";
 			}
@@ -20,20 +23,17 @@ window.onload = function(){
 	};
 
 	// data-read
-	var url = "./test.php?mode=read";
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', url, true);
+	xhr.open('POST', url_r, true);
 	xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	xhr.send();
 	xhr.onreadystatechange = function(){
 		if(this.readyState === 4){
-			var datas = this.responseText.split("\n");
-			var html = "";
+			const datas = this.responseText.split("\n");
+			let html = "";
 			for(var i=0; i<datas.length; i++){
 				html += "<div>"+datas[i]+"</div>";
 			}
-			var list = document.getElementById("list");
 			list.innerHTML = html;
 		}
 	};
-};
+}());
